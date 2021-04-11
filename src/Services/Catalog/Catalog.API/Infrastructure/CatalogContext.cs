@@ -3,7 +3,9 @@
     using EntityConfigurations;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
+    using Microsoft.Extensions.Configuration;
     using Model;
+    using System.IO;
 
     public class CatalogContext : DbContext
     {
@@ -27,8 +29,15 @@
     {
         public CatalogContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<CatalogContext>()
-                .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
+            var config = new ConfigurationBuilder()
+               .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+               .AddJsonFile("appsettings.json")
+               .AddEnvironmentVariables()
+               .Build();
+
+            var optionsBuilder = new DbContextOptionsBuilder<CatalogContext>();
+
+            optionsBuilder.UseSqlServer(config["ConnectionString"], sqlServerOptionsAction: o => o.MigrationsAssembly("Catalog.API"));
 
             return new CatalogContext(optionsBuilder.Options);
         }
