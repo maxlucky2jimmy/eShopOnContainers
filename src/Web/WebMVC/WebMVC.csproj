@@ -8,6 +8,8 @@
     <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
     <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
     <LangVersion>preview</LangVersion>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +37,7 @@
     <PackageReference Include="Microsoft.AspNetCore.HealthChecks" Version="1.0.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.8.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="5.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3" />
